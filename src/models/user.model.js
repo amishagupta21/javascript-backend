@@ -54,6 +54,7 @@ userSchema.pre("save", async function (next) {
     this.password = bcrypt.hash(this.password, 10)
     next()
 })
+
 //custom methods
 
 userSchema.methods.isPassowrdCorrect = async function (password) {
@@ -73,6 +74,8 @@ userSchema.methods.genrateAccessToken = async function () {
         }
     )
 }
+
+
 userSchema.methods.genrateRefereshToken = async function () {
     return await jwt.sign({
         _id: this._id
